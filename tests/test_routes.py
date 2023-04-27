@@ -151,6 +151,6 @@ class TestAccountService(TestCase):
         self.assertEqual(updaccount.status_code, status.HTTP_201_CREATED)
         update = updaccount.get_json()
         update["name"] = "Barbara"
-        updaccount = self.client.put(f"{BASE_URL}/{updaccount['id']}", json=updaccount)
+        updaccount = self.client.put(f"{BASE_URL}/{update['id']}", json=update)
         self.assertEqual(updaccount.status_code, status.HTTP_200_OK)
         self.assertEqual(updaccount.get_json()["name"], "Barbara")

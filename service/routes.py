@@ -68,7 +68,7 @@ def create_accounts():
 # READ AN ACCOUNT
 ######################################################################
 
-@app.route("/accounts/<int:id>", methods=["PUT"])
+@app.route("/accounts/<int:id>", methods=["GET"])
 def read_account(id):
     """
     Reads an Account
@@ -85,6 +85,7 @@ def read_account(id):
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
 
+@app.route("/accounts/<int:id>", methods=["PUT"])
 def update_account(id):
     """
     Updates an Account
