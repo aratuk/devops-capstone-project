@@ -61,6 +61,7 @@ def create_accounts():
 # LIST ALL ACCOUNTS
 ######################################################################
 
+
 @app.route("/accounts", methods=["GET"])
 def list_accounts():
     """
@@ -70,11 +71,12 @@ def list_accounts():
     app.logger.info("Request to list Accounts")
     accounts = Account.all()
     account_list = [account.serialize() for account in accounts]
-    return make_response (jsonify(account_list), status.HTTP_200_OK)
+    return make_response(jsonify(account_list), status.HTTP_200_OK)
 
 ######################################################################
 # READ AN ACCOUNT
 ######################################################################
+
 
 @app.route("/accounts/<int:id>", methods=["GET"])
 def read_account(id):
@@ -86,11 +88,12 @@ def read_account(id):
     account = Account.find(id)
     if not account:
         return status.HTTP_404_NOT_FOUND
-    return make_response (account.serialize(), status.HTTP_200_OK)
+    return make_response(account.serialize(), status.HTTP_200_OK)
 
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
+
 
 @app.route("/accounts/<int:id>", methods=["PUT"])
 def update_account(id):
@@ -99,17 +102,18 @@ def update_account(id):
     This endpoint will update an Account based on the provided ID
     """
     app.logger.info("Request to update an Account")
-    account = Account.find(id)    
+    account = Account.find(id)
     if not account:
         return status.HTTP_404_NOT_FOUND
     else:
         account.deserialize(request.get_json())
         account.update()
-        return make_response (account.serialize(), status.HTTP_200_OK)
+        return make_response(account.serialize(), status.HTTP_200_OK)
 
 ######################################################################
 # DELETE AN ACCOUNT
 ######################################################################
+
 
 @app.route("/accounts/<int:id>", methods=["DELETE"])
 def delete_account(id):
@@ -118,9 +122,9 @@ def delete_account(id):
     This endpoint will delete an Account with the provided ID
     """
     app.logger.info("Request to delete an Account")
-    account = Account.find(id)    
+    account = Account.find(id)
     account.delete()
-    return make_response ("", status.HTTP_204_NO_CONTENT)
+    return make_response("", status.HTTP_204_NO_CONTENT)
 
 
 ######################################################################

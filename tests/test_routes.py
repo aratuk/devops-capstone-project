@@ -133,7 +133,7 @@ class TestAccountService(TestCase):
         )
         self.assertEqual(retrieve.status_code, status.HTTP_200_OK)
         self.assertEqual(retrieve.get_json()["name"], account.name)
-        
+
     def test_account_not_found(self):
         """It should return 404 for a nonexistent Account"""
         account = Account()
