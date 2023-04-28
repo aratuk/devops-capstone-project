@@ -174,3 +174,8 @@ class TestAccountService(TestCase):
         updaccount = self.client.delete(f"{BASE_URL}/{remove['id']}", json=remove)
         self.assertEqual(updaccount.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(updaccount.get_json(), None)
+
+    def test_method_not_allowed(self):
+        """It shoudl not allow an illegal method call"""
+        resp = self.client.delete(f"{BASE_URL}")
+        self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
